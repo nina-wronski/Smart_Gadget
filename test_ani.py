@@ -57,6 +57,13 @@ def nz_time():
     dt_nz = dt_utc.astimezone(pytz.timezone('NZ'))
     return dt_nz
 
+def battery_warning(device):
+    dp = device.battery_percent()
+    if dp < 50:
+        print('Battery percentage is {}'.format (dp) )
+    else:
+        pass
+
 #def plot_axis():
 
 #def A2_append_values():
@@ -88,6 +95,7 @@ def animate(i, time_stamp, temp, hum):
     #plt.style.use('seaborn')
     #fig, (ax1, ax2) =plt.subplots(nrows=2, ncols=1, sharex=True)
 
+    battery_warning(A2_SG)
 
     time_now = nz_time()
 
@@ -97,6 +105,7 @@ def animate(i, time_stamp, temp, hum):
     temp.append(temp_now)
     hum.append(hum_now)
     wc.writerow([time_now, temp_now, hum_now])
+
 
     #plt.style.use('dark_background')
     #fig, (ax1, ax2) =plt.subplots(nrows=2, ncols=1, sharex=True)
